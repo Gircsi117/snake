@@ -44,6 +44,7 @@ let game = false;
 let move = false;
 let moveIntervall;
 let nextPos;
+let double = false;
 
 easyBT.addEventListener("click", ()=>{
     difficulti = "easy";
@@ -280,10 +281,19 @@ function step() {
             table[snake[i].x][snake[i].y] = table[snake[i+1].x][snake[i+1].y]
             table[snake[i+1].x][snake[i+1].y] = a;
         }
+
         snakeHeadPos = {'x':snake[0].x, 'y':snake[0].y}
+
         let last = table[snake[snake.length-1].x][snake[snake.length-1].y]
+
         if (last == 0) {
-            snake.pop();
+            if (double == false) {
+                snake.pop();
+            }
+            else{
+                table[snake[snake.length-1].x][snake[snake.length-1].y] = 2;
+                double = false;
+            }
         }
         else if (last == 4) {
             table[snake[snake.length-1].x][snake[snake.length-1].y] = 2;
@@ -300,6 +310,7 @@ function step() {
         else if (last == 5) {
             table[snake[snake.length-1].x][snake[snake.length-1].y] = 2;
             point += 2;
+            double = true;
             kiirat();
         }
         else if (last == 6) {
