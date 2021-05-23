@@ -18,6 +18,7 @@ const KEYS = {
     S: 83,
     D: 68,
     P: 80,
+    ENTER: 13,
 }
 
 const DIRECTION = {
@@ -50,6 +51,9 @@ let move = false;
 let moveIntervall;
 let nextPos;
 let double = false;
+
+easyBT.classList.add("selectedBT");
+difficulti = "easy"
 
 easyBT.addEventListener("click", ()=>{
     difficulti = "easy";
@@ -111,10 +115,25 @@ document.addEventListener("keydown", (key)=>{
         }
         drawTable();
     }
+    else{
+        switch (key.keyCode) {
+            case KEYS.UP: {previousMenu(); break;};
+            case KEYS.W: {previousMenu(); break;};
+
+            case KEYS.DOWN: {nextMenu(); break;};
+            case KEYS.S: {nextMenu(); break;};
+
+            case KEYS.ENTER: {start(); break;};
+        }
+    }
     
 });
 
 startBT.addEventListener("click", ()=>{
+    start();
+});
+
+function start(params) {
     if (game == false) {
         game = true;
         if (difficulti != null) {
@@ -139,7 +158,7 @@ startBT.addEventListener("click", ()=>{
             alert("Válassz nehézséget!");
         }
     }
-});
+}
 
 function drawTable() {
     let str = '<table class="tabla" id="tabla">'
@@ -347,4 +366,66 @@ function gameOver(params) {
     document.getElementById("eredmeny").innerHTML = `A megszerzett pontok: ${point}`;
     console.log("Game Over");
     switchPanel(2, 1);
+}
+
+function nextMenu() {
+    if (difficulti == "easy") {
+        difficulti = "medium";
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.add("selectedBT");
+        hardBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "medium") {
+        difficulti = "hard";
+        hardBT.classList.add("selectedBT");
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "hard") {
+        difficulti = "extreme";
+        extremeBT.classList.add("selectedBT");
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        hardBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "extreme") {
+        difficulti = "easy";
+        easyBT.classList.add("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        hardBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
+}
+
+function previousMenu() {
+    if (difficulti == "easy") {
+        difficulti = "extreme";
+        extremeBT.classList.add("selectedBT");
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        hardBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "medium") {
+        difficulti = "easy";
+        easyBT.classList.add("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        hardBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "hard") {
+        difficulti = "medium";
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.add("selectedBT");
+        hardBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
+    else if (difficulti == "extreme") {
+        difficulti = "hard";
+        hardBT.classList.add("selectedBT");
+        easyBT.classList.remove("selectedBT");
+        mediumBT.classList.remove("selectedBT");
+        extremeBT.classList.remove("selectedBT");
+    }
 }
