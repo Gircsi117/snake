@@ -147,10 +147,10 @@ function start(params) {
         game = true;
         if (difficulti != null) {
             switch (difficulti) {
-                case "easy": {speed = 800; obstacle = 0; break;}
-                case "medium": {speed = 650; obstacle = 5; break;}
-                case "hard": {speed = 500; obstacle = 10; break;}
-                case "extreme": {speed = 300; obstacle = 20; break;}
+                case "easy": {speed = 650; obstacle = 0; break;}
+                case "medium": {speed = 500; obstacle = 5; break;}
+                case "hard": {speed = 350; obstacle = 10; break;}
+                case "extreme": {speed = 200; obstacle = 20; break;}
             }
             snakeHeadPos = null;
             snake = [];
