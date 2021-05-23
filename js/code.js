@@ -295,7 +295,7 @@ function step() {
     switch (table[nextPos.x][nextPos.y]) {
         case 0: {nextadd(nextPos); break};
         case 1: {gameOver(); mehet = false; break};
-        case 2: {gameOver(); mehet = false; break};
+        case 2: {if (nextPos.x == snake[snake.length-1].x && nextPos.y == snake[snake.length-1].y) {nextadd(nextPos); snake.pop() }else{gameOver(); mehet = false;} break};
         case 4: {nextadd(nextPos); break};
         case 5: {nextadd(nextPos); break};
         case 6: {nextadd(nextPos); break};
@@ -353,7 +353,6 @@ function step() {
         
         
         drawTable();
-        //clearInterval(moveIntervall);
     }
 }
 
