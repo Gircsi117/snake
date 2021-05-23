@@ -28,6 +28,13 @@ const DIRECTION = {
     LEFT: 3
 }
 
+const DIFFICULTi = [
+    "easy",
+    "medium",
+    "hard",
+    "extreme"
+];
+
 let gameTable = document.getElementById("gameTable");
 let startBT = document.getElementById("startBT");
 let gameBackGround = document.getElementById("gameBackGround");
@@ -40,6 +47,8 @@ let hardBT = document.getElementById("hard");
 let extremeBT = document.getElementById("extreme");
 let table = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 let snake = [];
+let buttons = [easyBT, mediumBT, hardBT, extremeBT]
+let buttonNumber = 0;
 let moveDirection;
 let speed;
 let obstacle;
@@ -52,7 +61,7 @@ let moveIntervall;
 let nextPos;
 let double = false;
 
-easyBT.classList.add("selectedBT");
+buttons[buttonNumber].classList.add("selectedBT");
 difficulti = "easy"
 
 easyBT.addEventListener("click", ()=>{
@@ -369,63 +378,25 @@ function gameOver(params) {
 }
 
 function nextMenu() {
-    if (difficulti == "easy") {
-        difficulti = "medium";
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.add("selectedBT");
-        hardBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
+    buttonNumber++;
+    if (buttonNumber == 4) {
+        buttonNumber = 0;
     }
-    else if (difficulti == "medium") {
-        difficulti = "hard";
-        hardBT.classList.add("selectedBT");
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("selectedBT");
     }
-    else if (difficulti == "hard") {
-        difficulti = "extreme";
-        extremeBT.classList.add("selectedBT");
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        hardBT.classList.remove("selectedBT");
-    }
-    else if (difficulti == "extreme") {
-        difficulti = "easy";
-        easyBT.classList.add("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        hardBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
-    }
+    buttons[buttonNumber].classList.add("selectedBT");
+    difficulti = DIFFICULTi[buttonNumber];
 }
 
 function previousMenu() {
-    if (difficulti == "easy") {
-        difficulti = "extreme";
-        extremeBT.classList.add("selectedBT");
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        hardBT.classList.remove("selectedBT");
+    buttonNumber--;
+    if (buttonNumber == -1) {
+        buttonNumber = 3;
     }
-    else if (difficulti == "medium") {
-        difficulti = "easy";
-        easyBT.classList.add("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        hardBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("selectedBT");
     }
-    else if (difficulti == "hard") {
-        difficulti = "medium";
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.add("selectedBT");
-        hardBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
-    }
-    else if (difficulti == "extreme") {
-        difficulti = "hard";
-        hardBT.classList.add("selectedBT");
-        easyBT.classList.remove("selectedBT");
-        mediumBT.classList.remove("selectedBT");
-        extremeBT.classList.remove("selectedBT");
-    }
+    buttons[buttonNumber].classList.add("selectedBT");
+    difficulti = DIFFICULTi[buttonNumber];
 }
