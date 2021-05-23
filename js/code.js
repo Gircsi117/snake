@@ -12,7 +12,11 @@ const KEYS = {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    DOWN: 40
+    DOWN: 40,
+    W: 87,
+    A: 65,
+    S: 83,
+    D: 68
 }
 
 const DIRECTION = {
@@ -91,9 +95,16 @@ document.addEventListener("keydown", (key)=>{
         }
         switch (key.keyCode) {
             case KEYS.UP: {swichDirection(KEYS.UP); break;};
+            case KEYS.W: {swichDirection(KEYS.UP); break;};
+
             case KEYS.RIGHT: {swichDirection(KEYS.RIGHT); break;};
+            case KEYS.D: {swichDirection(KEYS.RIGHT); break;};
+
             case KEYS.DOWN: {swichDirection(KEYS.DOWN); break;};
+            case KEYS.S: {swichDirection(KEYS.DOWN); break;};
+
             case KEYS.LEFT: {swichDirection(KEYS.LEFT); break;};
+            case KEYS.A: {swichDirection(KEYS.LEFT); break;};
         }
         drawTable();
     }
@@ -105,25 +116,10 @@ startBT.addEventListener("click", ()=>{
         game = true;
         if (difficulti != null) {
             switch (difficulti) {
-                case "easy":
-                    speed = 800;
-                    obstacle = 0;
-                    break;
-
-                case "medium":
-                    speed = 650;
-                    obstacle = 5;
-                    break;
-
-                case "hard":
-                    speed = 500;
-                    obstacle = 10;
-                    break;
-
-                case "extreme":
-                    speed = 300;
-                    obstacle = 20;
-                    break;
+                case "easy": {speed = 800; obstacle = 0; break;}
+                case "medium": {speed = 650; obstacle = 5; break;}
+                case "hard": {speed = 500; obstacle = 10; break;}
+                case "extreme": {speed = 300; obstacle = 20; break;}
             }
             snakeHeadPos = null;
             snake = [];
