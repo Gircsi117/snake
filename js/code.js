@@ -16,7 +16,8 @@ const KEYS = {
     W: 87,
     A: 65,
     S: 83,
-    D: 68
+    D: 68,
+    P: 80,
 }
 
 const DIRECTION = {
@@ -105,6 +106,8 @@ document.addEventListener("keydown", (key)=>{
 
             case KEYS.LEFT: {swichDirection(KEYS.LEFT); break;};
             case KEYS.A: {swichDirection(KEYS.LEFT); break;};
+
+            case KEYS.P: {move = false; clearInterval(moveIntervall); break;};
         }
         drawTable();
     }
