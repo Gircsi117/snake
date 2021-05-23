@@ -8,6 +8,13 @@ const ELEMETS = [
     "greanapple"
 ];
 
+const DIFFICULTi = [
+    "easy",
+    "medium",
+    "hard",
+    "extreme"
+];
+
 const KEYS = {
     LEFT: 37,
     UP: 38,
@@ -27,13 +34,6 @@ const DIRECTION = {
     DOWN: 2,
     LEFT: 3
 }
-
-const DIFFICULTi = [
-    "easy",
-    "medium",
-    "hard",
-    "extreme"
-];
 
 let gameTable = document.getElementById("gameTable");
 let startBT = document.getElementById("startBT");
@@ -295,7 +295,7 @@ function step() {
     switch (table[nextPos.x][nextPos.y]) {
         case 0: {nextadd(nextPos); break};
         case 1: {gameOver(); mehet = false; break};
-        case 2: {if (nextPos.x == snake[snake.length-1].x && nextPos.y == snake[snake.length-1].y) {nextadd(nextPos); snake.pop() }else{gameOver(); mehet = false;} break};
+        case 2: {if (nextPos.x == snake[snake.length-1].x && nextPos.y == snake[snake.length-1].y) {nextadd(nextPos); snake.pop()}else{gameOver(); mehet = false;} break};
         case 4: {nextadd(nextPos); break};
         case 5: {nextadd(nextPos); break};
         case 6: {nextadd(nextPos); break};
